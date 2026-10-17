@@ -1,3 +1,4 @@
+```php
 <?php
 
 namespace App\Models;
@@ -10,6 +11,8 @@ class Book extends Model
         'kode_buku',
         'judul',
         'pengarang',
+        'penerbit',
+        'tahun',
         'stok',
     ];
 
@@ -18,3 +21,4 @@ class Book extends Model
         return $this->hasMany(Loan::class);
     }
 }
+```
