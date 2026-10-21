@@ -29,99 +29,114 @@ function submit() {
         <div class="py-8">
             <div class="mx-auto max-w-3xl sm:px-6 lg:px-8">
                 <div class="rounded-lg bg-white p-6 shadow-sm">
-                    <form @submit.prevent="submit" class="space-y-4">
+
+                    <form @submit.prevent="submit" class="space-y-5">
+
                         <div>
-                            <label class="block font-medium">Kode Buku</label>
+                            <label class="mb-1 block font-medium">
+                                Kode Buku
+                            </label>
                             <input
                                 v-model="form.kode_buku"
                                 type="text"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                                 required
                             />
-                            <p v-if="form.errors.kode_buku" class="text-red-600">
+                            <p v-if="form.errors.kode_buku" class="mt-1 text-sm text-red-600">
                                 {{ form.errors.kode_buku }}
                             </p>
                         </div>
 
                         <div>
-                            <label class="block font-medium">Judul</label>
+                            <label class="mb-1 block font-medium">
+                                Judul Buku
+                            </label>
                             <input
                                 v-model="form.judul"
                                 type="text"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                                 required
                             />
-                            <p v-if="form.errors.judul" class="text-red-600">
+                            <p v-if="form.errors.judul" class="mt-1 text-sm text-red-600">
                                 {{ form.errors.judul }}
                             </p>
                         </div>
 
                         <div>
-                            <label class="block font-medium">Pengarang</label>
+                            <label class="mb-1 block font-medium">
+                                Pengarang
+                            </label>
                             <input
                                 v-model="form.pengarang"
                                 type="text"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                                 required
                             />
-                            <p v-if="form.errors.pengarang" class="text-red-600">
+                            <p v-if="form.errors.pengarang" class="mt-1 text-sm text-red-600">
                                 {{ form.errors.pengarang }}
                             </p>
                         </div>
 
                         <div>
-                            <label class="block font-medium">Penerbit</label>
+                            <label class="mb-1 block font-medium">
+                                Penerbit
+                            </label>
                             <input
                                 v-model="form.penerbit"
                                 type="text"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                             />
                         </div>
 
                         <div>
-                            <label class="block font-medium">Tahun</label>
+                            <label class="mb-1 block font-medium">
+                                Tahun Terbit
+                            </label>
                             <input
                                 v-model="form.tahun"
                                 type="number"
                                 min="1000"
                                 max="9999"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                             />
-                            <p v-if="form.errors.tahun" class="text-red-600">
+                            <p v-if="form.errors.tahun" class="mt-1 text-sm text-red-600">
                                 {{ form.errors.tahun }}
                             </p>
                         </div>
 
                         <div>
-                            <label class="block font-medium">Stok</label>
+                            <label class="mb-1 block font-medium">
+                                Stok
+                            </label>
                             <input
-                                v-model="form.stok"
+                                v-model.number="form.stok"
                                 type="number"
                                 min="0"
-                                class="mt-1 w-full rounded border-gray-300"
+                                class="w-full rounded border-gray-300"
                                 required
                             />
-                            <p v-if="form.errors.stok" class="text-red-600">
+                            <p v-if="form.errors.stok" class="mt-1 text-sm text-red-600">
                                 {{ form.errors.stok }}
                             </p>
                         </div>
 
-                        <div class="flex gap-3 pt-3">
+                        <div class="flex items-center gap-3">
                             <button
                                 type="submit"
                                 :disabled="form.processing"
-                                class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
+                                class="rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700 disabled:opacity-50"
                             >
-                                {{ form.processing ? 'Menyimpan...' : 'Simpan Buku' }}
+                                {{ form.processing ? 'Menyimpan...' : 'Simpan' }}
                             </button>
 
                             <Link
-                                :href="route('buku')"
-                                class="rounded bg-gray-200 px-4 py-2 text-gray-800 hover:bg-gray-300"
+                                href="/buku"
+                                class="rounded bg-gray-200 px-5 py-2 text-gray-800 hover:bg-gray-300"
                             >
                                 Kembali
                             </Link>
                         </div>
+
                     </form>
                 </div>
             </div>

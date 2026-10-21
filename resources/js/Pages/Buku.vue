@@ -1,7 +1,6 @@
-
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head} from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 
 defineProps({
     books: {
@@ -29,12 +28,13 @@ defineProps({
                         <h3 class="text-lg font-bold">
                             Data Buku Perpustakaan
                         </h3>
-<button
-    type="button"
-    class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
->
-    + Tambah Buku
-</button>
+
+                        <Link
+                            href="/buku/create"
+                            class="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                        >
+                            + Tambah Buku
+                        </Link>
                     </div>
 
                     <div class="overflow-x-auto">

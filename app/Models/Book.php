@@ -1,4 +1,3 @@
-```php
 <?php
 
 namespace App\Models;
@@ -21,4 +20,3 @@ class Book extends Model
         return $this->hasMany(Loan::class);
     }
 }
-```

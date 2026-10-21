@@ -19,13 +19,28 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/buku', [BukuController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('buku');
-
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Menampilkan daftar buku
+    Route::get('/buku', [BukuController::class, 'index'])
+        ->name('buku');
+
+    // Menampilkan formulir tambah buku
+    Route::get('/buku/create', [BukuController::class, 'create'])
+        ->name('buku.create');
+
+    // Menyimpan buku baru
+    Route::post('/buku', [BukuController::class, 'store'])
+        ->name('buku.store');
+
+    // Route profil
+    Route::get('/profile', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::patch('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::delete('/profile', [ProfileController::class, 'destroy'])
+        ->name('profile.destroy');
 });
+
 require __DIR__.'/auth.php';
