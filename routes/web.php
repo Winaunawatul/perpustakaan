@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+// Halaman utama
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -15,16 +16,18 @@ Route::get('/', function () {
     ]);
 });
 
+// Dashboard
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    // Menampilkan daftar buku
+
+    // Menampilkan daftar buku dan pencarian
     Route::get('/buku', [BukuController::class, 'index'])
         ->name('buku');
 
-    // Menampilkan formulir tambah buku
+    // Form tambah buku
     Route::get('/buku/create', [BukuController::class, 'create'])
         ->name('buku.create');
 
@@ -32,7 +35,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/buku', [BukuController::class, 'store'])
         ->name('buku.store');
 
-    // Route profil
+    // Form edit buku
+    Route::get('/buku/{book}/edit', [BukuController::class, 'edit'])
+        ->name('buku.edit');
+
+    // Memperbarui data buku
+    Route::put('/buku/{book}', [BukuController::class, 'update'])
+        ->name('buku.update');
+
+    // Menghapus buku
+    Route::delete('/buku/{book}', [BukuController::class, 'destroy'])
+        ->name('buku.destroy');
+
+    // Profil pengguna
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
 
@@ -43,4 +58,5 @@ Route::middleware('auth')->group(function () {
         ->name('profile.destroy');
 });
 
+// Route autentikasi
 require __DIR__.'/auth.php';
